@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <div class="container mt-3">
+        <table class="table table-dark">
+            <thead>
+                <th>Sno</th>
+                <th>Product Name</th>
+                <th>Owner Name</th>
+                <th>Product Details</th>
+                <th>Product Price</th>
+                <th>Contact</th>
+            </thead>
+
+            <tbody id="tbody1">
+
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<!--Firebase Libraries-->
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+
+<script id="MainScript">
+
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyAnBQdizEoe6Ynps14ekye-08VuID5CHH4",
+        authDomain: "campusmart-3c06d.firebaseapp.com",
+        databaseURL: "https://campusmart-3c06d-default-rtdb.firebaseio.com",
+        projectId: "campusmart-3c06d",
+        storageBucket: "campusmart-3c06d.firebasestorage.app",
+        messagingSenderId: "101996365967",
+        appId: "1:101996365967:web:7db20e847dc9d9a7f488fa"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    // Get Data
+
+    function SelectAllData() {
+        firebase.database().ref('student').once('value',
+            function (AllRecords) {
+                AllRecords.forEach(
+                    function (CurrentRecord) {
+                        var Pname = CurrentRecord.val().NameOfProdcut;
+                        var Oname = CurrentRecord.val().OwnerOfProdcut;
+                        var Details = CurrentRecord.val().Details;
+                        var Price = CurrentRecord.val().Price;
+                        var Contact = CurrentRecord.val().Contact;
+                        AddItemsTOTable(Pname, Oname, Details, Price, Contact);
+                    }
+                );
+
+            });
+    }
+
+    window.onload = SelectAllData;
+
+    // ........................FILLING THE TABLE.....................//
+    var stuNo = 0;
+    function AddItemsTOTable(Pname, Oname, Details, Price, Contact) {
+
+        var tbody = document.getElementById('tbody1');
+        var trow = document.createElement('tr');
+        var td1 = document.createElement('td');
+        var td2 = document.createElement('td');
+        var td3 = document.createElement('td');
+        var td4 = document.createElement('td');
+        var td5 = document.createElement('td');
+        var td6 = document.createElement('td');
+        td1.innerHTML = ++stuNo;
+        td2.innerHTML = Pname;
+        td3.innerHTML = Oname;
+        td4.innerHTML = Details;
+        td5.innerHTML = Price;
+        td6.innerHTML = Contact;
+
+        trow.appendChild(td1);
+        trow.appendChild(td2);
+        trow.appendChild(td3);
+        trow.appendChild(td4);
+        trow.appendChild(td5);
+        trow.appendChild(td6);
+        trow.appendChild(trow);
+
+        trow.appendChild(td1); trow.appendChild(td2); trow.appendChild(td3); trow.appendChild(td4); trow.appendChild(td5); trow.appendChild(td6);
+
+    }
+</script>
+
+
+
+</body>
+
+</html>

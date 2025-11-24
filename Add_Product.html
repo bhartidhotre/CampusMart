@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Add/Edit/Delete Product</title>
+  <link rel="stylesheet" href="styles2.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js"></script>
+  <style>
+  </style>
+</head>
+<body>
+  <h1>Add Product Details</h1>
+  <form id="roomForm">
+    <label for="roomName">Product Name:</label>
+    <input type="text" id="roomName" name="roomName" required><br><br>
+
+    <label for="location">Product Details:</label>
+    <input type="text" id="location" name="location" required><br><br>
+
+    <label for="facilities">Availability:</label>
+    <input type="text" id="facilities" name="facilities" required><br><br>
+
+    <label for="rent">Price:</label>
+    <input type="number" id="rent" name="rent" required><br><br>
+
+    <label for="facilities1">Owner Name:</label>
+    <input type="text" id="facilities1" name="facilities1" required><br><br>
+
+    <label for="roomType">Contact:</label>
+    <input type="text" id="roomType" name="roomType" required><br><br>
+
+    <label for="roomPhoto">Product Image:</label>
+    <input type="file" id="roomPhoto" accept="image/*"><br><br>
+
+    <button type="submit">Add Product</button>
+  </form>
+
+  <h2>Existing Products</h2>
+  <div id="roomList"></div>
+
+  <!-- Edit Room Modal -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Edit Product Details</h3>
+        <button id="closeModal">X</button>
+      </div>
+      <form id="editRoomForm">
+        <input type="hidden" id="editRoomId">
+
+        <label for="editRoomName">Product Name:</label>
+        <input type="text" id="editRoomName" name="roomName" required><br><br>
+
+        <label for="editLocation">Product Details:</label>
+        <input type="text" id="editLocation" name="location" required><br><br>
+
+        <label for="editFacilities">Availability:</label>
+        <input type="text" id="editFacilities" name="facilities" required><br><br>
+
+        <label for="editRent">Price:</label>
+        <input type="number" id="editRent" name="rent" required><br><br>
+
+        <label for="editFacilities1">Owner Name:</label>
+        <input type="text" id="editFacilities1" name="facilities1" required><br><br>
+
+        <label for="roomType">Contact:</label>
+        <input type="text" id="editroomType" name="roomType" required><br><br>
+
+        <label for="editRoomPhoto">Product Image:</label>
+        <input type="file" id="editRoomPhoto" accept="image/*"><br><br>
+
+        <div class="modal-footer">
+          <button type="button" id="closeModalBtn">Cancel</button>
+          <button type="submit">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    // Import Firebase functions
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+    import { getFirestore, collection, getDocs, doc, addDoc, updateDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+    import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDy-eOUsMJEOH-GuxfPZrXwy5U7TY4HaC0",
+      authDomain: "hostel-website-9a660.firebaseapp.com",
+      projectId: "hostel-website-9a660",
+      storageBucket: "hostel-website-9a660.appspot.com",
+      messagingSenderId: "464034156130",
+      appId: "1:464034156130:web:edd2895246684d8f728b3b",
+    };
+
+
+
+    // Initialize Firebase and Firestore
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);                     //for storing text info
+    const storage = getStorage(app);                  //for img and video 
+
+    const roomForm = document.getElementById('roomForm');
+    const roomList = document.getElementById('roomList');
+    const editModal = document.getElementById('editModal');
+    const editRoomForm = document.getElementById('editRoomForm');
+    let editRoomId = null;
+
+    // Open modal function
+    function openModal() {
+      editModal.style.display = 'flex';
+    }
+
+    // Close modal function
+    function closeModal() {
+      editModal.style.display = 'none';
+    }
+
+    // Close modal on button click
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+
+    // Fetch and display rooms
+    async function fetchRooms() {
+      roomList.innerHTML = ''; // Clear the list
+      const querySnapshot = await getDocs(collection(db, 'rooms'));
+      querySnapshot.forEach((doc) => {
+        const roomData = doc.data();
+        roomList.innerHTML += `
+          <div class="room" data-id="${doc.id}">
+              <img src="${roomData.photoURL}" alt="${roomData.roomName}">
+            <h3>${roomData.roomName}</h3>
+            <p>Product Details: ${roomData.location}</p>
+            <p>Availability: ${roomData.facilities}</p>
+            <p>Owner Name: ${roomData.facilities1}</p>
+            <p>Contact: ${roomData.roomType}</p>
+            <p>Price: ₹${roomData.rent}</p>
+            <div class="buttons">
+              <button onclick="editRoom('${doc.id}', '${roomData.roomName}', '${roomData.location}', '${roomData.facilities}', '${roomData.facilities1}','${roomData.roomType}','${roomData.rent}')">Edit</button>
+              <button onclick="deleteRoom('${doc.id}', '${roomData.photoURL}')">Delete</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Edit room details in modal
+    window.editRoom = (id, roomName, location, facilities,facilities1,roomType ,rent) => {
+      editRoomId = id;
+      document.getElementById('editRoomName').value = roomName;
+      document.getElementById('editLocation').value = location;
+      document.getElementById('editFacilities').value = facilities;
+      document.getElementById('editFacilities1').value = facilities1;
+      document.getElementById('editroomType').value = roomType;
+      document.getElementById('editRent').value = rent;
+
+      openModal(); // Open modal for editing
+    };
+
+    // Add/Edit room in Firestore
+    editRoomForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const roomName = document.getElementById('editRoomName').value;
+      const location = document.getElementById('editLocation').value;
+      const facilities = document.getElementById('editFacilities').value;
+      const facilities1 = document.getElementById('editFacilities1').value;
+      const roomType = document.getElementById('editroomType').value;
+      const rent = document.getElementById('editRent').value;
+      const roomPhoto = document.getElementById('editRoomPhoto').files[0];
+
+      try {
+        let photoURL = ''; // Handle photo upload or keep existing
+        if (roomPhoto) {
+          const photoRef = ref(storage, `rooms/${roomPhoto.name}`);
+          await uploadBytes(photoRef, roomPhoto);
+          photoURL = await getDownloadURL(photoRef);
+        }
+
+        if (editRoomId) {
+          const roomRef = doc(db, 'rooms', editRoomId);
+          await updateDoc(roomRef, {
+            roomName: roomName,
+            location: location,
+            facilities: facilities,
+            facilities1: facilities1,
+            roomType: roomType,
+
+            rent: parseInt(rent),
+            ...(photoURL && { photoURL: photoURL }) // Update photo URL if new photo uploaded
+          });
+        }
+
+        fetchRooms();
+        closeModal(); // Close modal after editing
+      } catch (error) {
+        console.error('Error editing room:', error);
+      }
+    });
+
+    // Add room form submission
+    roomForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const roomName = roomForm.roomName.value;
+      const location = roomForm.location.value;
+      const facilities = roomForm.facilities.value;
+      const facilities1 = roomForm.facilities1.value;
+      const roomType = roomForm.roomType.value;
+      const rent = roomForm.rent.value;
+      const roomPhoto = roomForm.roomPhoto.files[0];
+
+      
+//This line uploads the selected photo (roomPhoto) to Firebase Storage at the reference created earlier (photoRef).
+// The await keyword pauses the code until the photo upload is completed.
+// uploadBytes: This Firebase Storage function uploads the image in its original form (as bytes). 
+      try {
+        const photoRef = ref(storage, `rooms/${roomPhoto.name}`);  //storage is use for storing img and video file  
+        await uploadBytes(photoRef, roomPhoto);
+        const photoURL = await getDownloadURL(photoRef);
+
+        await addDoc(collection(db, 'rooms'), {
+          roomName: roomName,
+          location: location,
+          facilities: facilities,
+          facilities1: facilities1,
+          roomType: roomType,
+          rent: parseInt(rent),
+          photoURL: photoURL
+        });
+//   After the new room is successfully added, the code calls the fetchRooms() function.
+        fetchRooms();
+        roomForm.reset(); // Clear the form after submission
+      } catch (error) {
+        console.error('Error adding product:', error);
+      }
+    });
+
+    // Delete room
+    //Delete room
+    window.deleteRoom = async (id, photoURL) => {
+      if (confirm('Are you sure you want to delete this Product?')) {
+        try {
+          // Delete room document from Firestore
+          await deleteDoc(doc(db, 'rooms', id));
+
+          // Delete photo from Firebase Storage
+          const photoRef = ref(storage, photoURL);
+          await deleteObject(photoRef);
+
+          alert('Product deleted successfully!');
+          fetchRooms();
+        } catch (error) {
+          console.error('Error deleting product:', error);
+        }
+      }
+    };
+
+
+
+    // Fetch the rooms on page load
+    fetchRooms();
+  </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Available Products</title>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+  <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+  <h1>Available Products</h1>
+  
+  <input type="text" id="searchBox" class="search-bar" placeholder="Search by product name..." oninput="searchProducts()">
+  
+  <div id="roomList"></div>
+
+  <script type="module">
+    // Import Firebase functions from the SDK
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+    import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDy-eOUsMJEOH-GuxfPZrXwy5U7TY4HaC0",
+      authDomain: "hostel-website-9a660.firebaseapp.com",
+      projectId: "hostel-website-9a660",
+      storageBucket: "hostel-website-9a660.appspot.com",
+      messagingSenderId: "464034156130",
+      appId: "1:464034156130:web:edd2895246684d8f728b3b",
+    };
+
+    // Initialize Firebase and Firestore
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Global array to store fetched product data
+    let roomArray = [];
+
+    // Function to fetch and display room data
+    async function fetchRooms() {
+      const roomList = document.getElementById('roomList');
+      roomList.innerHTML = ''; // Clear the list
+      roomArray = []; // Clear global array
+
+      try {
+        const querySnapshot = await getDocs(collection(db, 'rooms'));
+        querySnapshot.forEach((doc) => {
+          const roomData = doc.data();
+          roomArray.push(roomData); // Add to global array
+        });
+
+        // After fetching, display all products
+        displayRooms(roomArray);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    }
+
+    // Function to display room data
+    function displayRooms(rooms) {
+      const roomList = document.getElementById('roomList');
+      roomList.innerHTML = '';
+
+      rooms.forEach((roomData) => {
+        roomList.innerHTML += `
+          <div class="room">
+            <h3>Product Name: ${roomData.roomName}</h3>
+            <img src="${roomData.photoURL}" alt="${roomData.roomName}">
+            <p>Product Details: ${roomData.location}</p>
+            <p>Availability: ${roomData.facilities}</p>
+            <p>Owner Name: ${roomData.facilities1}</p>
+            <p>Contact: ${roomData.roomType}</p>
+            <p>Price: ₹${roomData.rent}</p>
+          </div>
+        `;
+      });
+    }
+
+    // Search function
+    window.searchProducts = function () {
+      const query = document.getElementById('searchBox').value.toLowerCase();
+      const filteredRooms = roomArray.filter((roomData) =>
+        roomData.roomName.toLowerCase().includes(query)
+      );
+
+      displayRooms(filteredRooms);
+    }
+
+    // Call fetchRooms on page load
+    window.onload = fetchRooms;
+
+  </script>
+</body>
+</html>
