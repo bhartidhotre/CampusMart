@@ -543,3 +543,14 @@ p {
   font-size: 1.10rem;
 }
 
+.signup-btn {
+  text-decoration: none;
+  color: black ;
+  background-color: aqua;
+  
+}
+
+.social-media i {
+  text-decoration: none;
+  color: black;
+}
