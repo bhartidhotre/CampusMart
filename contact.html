@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <title>Contact Us</title>
+
+    <link rel="stylesheet" href="about.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="nav">
+
+            <div class="logo">
+                <img src="img/logo campusmart (2).png" alt="">
+            </div>
+
+            <div class="options">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="contact.html">Contact us</a></li>
+                </ul>
+            </div>
+
+            <div class="auth">
+                <i class="fa-solid fa-user icon"></i>
+                <div class="login"><a href="login.html">Log In</a></div>
+                |
+                <div class="signup"><a href="sign.html">Register</a></div>
+            </div>
+
+            <div class="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- CONTACT SECTION -->
+    <div class="contact-section">
+        <div class="contact">
+            <h1>Contact Us</h1>
+            <p>Hey buddy, what’s the issue? Tell us, we’re here to help!</p>
+        </div>
+
+        <div class="form">
+            <form action="">
+                <div class="mb-3">
+                    <label class="form-label">Your Name</label>
+                    <input type="text" class="form-control" placeholder="Enter your name">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Your Email</label>
+                    <input type="email" class="form-control" placeholder="name@example.com">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Subject</label>
+                    <input type="text" class="form-control" placeholder="Tell us your query">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Your Message</label>
+                    <textarea class="form-control" rows="3" placeholder="Leave a comment"></textarea>
+                </div>
+
+                <button class="btn btn-primary btn-lg">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="row mx-5 pt-5">
+            <div class="col-4 contact-logo">
+                <img src="imgs/logo campusmart (2).png" alt="">
+            </div>
+            <div class="col-2">
+                <h5 class="pb-3">Student Community</h5>
+                <p>Community</p>
+                <p>Join us</p>
+                <p>Always Care</p>
+            </div>
+            <div class="col-2">
+                <h5 class="pb-3">Quick Links</h5>
+                <p>About</p>
+                <p>Products</p>
+                <p>Contact</p>
+            </div>
+            <div class="col-2 social-media">
+                <h5 class="pb-3">SOCIAL MEDIA</h5>
+                <span class="me-3"><i class="fab fa-facebook"></i></span>
+                <span class="me-3"><i class="fab fa-instagram"></i></span>
+                <span class="me-3"><i class="fab fa-twitter"></i></span>
+                <span><i class="fab fa-google-plus"></i></span>
+            </div>
+        </div>
+        <hr>
+        <p class="text-center mt-3">
+            Copyright © 2025 developed by Bharti. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        const ham = document.querySelector(".hamburger");
+        const options = document.querySelector(".options");
+        const auth = document.querySelector(".auth");
+
+        ham.addEventListener("click", () => {
+            options.classList.toggle("active");
+            auth.classList.toggle("active");
+        });
+    </script>
+
+</body>
+</html>

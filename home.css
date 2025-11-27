@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+
 
 
 /*
@@ -35,6 +38,9 @@
 }
 
 */
+body {
+  font-family: "Manrope", sans-serif;
+}
 
 
 .navbar {
@@ -42,8 +48,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  background: #205781;
-  color: white;
+  background: white;
+  color: black;
 }
 
 .navbar.scrolled {
@@ -52,14 +58,15 @@
 }
 
 .navbar nav ul {
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 2rem;
+  font-weight: 700;
 
 }
 
 .navbar a {
-  color: white;
+  color: black;
   text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .navbar .nav-links li a:hover {
@@ -68,8 +75,8 @@
 
 
 .nav-link:hover {
-    border: 2px solid black;
-    transition: 0.3s ease-in-out;
+  color: blue;
+  transition: 0.3s ease-in-out;
 }
 
 .disabled-link {
@@ -89,363 +96,388 @@
 
 
 .carousel-item {
-    height: 800px;
-    background: rgba(0, 0, 0, 0.2);   
+  height: 800px;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 
 
 .carousel-item {
-    position: relative;
+  position: relative;
 }
 
 .carousel-item::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Adjust the opacity (0.5 = 50% transparent) */
-    z-index: 1;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  /* Adjust the opacity (0.5 = 50% transparent) */
+  z-index: 1;
 }
 
 .carousel-caption {
-    position: relative;
-    z-index: 2; /* Ensure the text appears above the overlay */
+  position: relative;
+  z-index: 2;
+  /* Ensure the text appears above the overlay */
 }
 
 .image-container {
-    position: relative;
-    display: inline-block;
-    width: 100%;
+  position: relative;
+  display: inline-block;
+  width: 100%;
 }
 
 .image-container img {
-    width: 100%;
-    opacity: 0.5; /* Make the image slightly transparent */
+  width: 100%;
+  opacity: 0.5;
+  /* Make the image slightly transparent */
 }
 
 .text-overlay {
-    position: absolute;
-    top: 60%; /* Center text vertically */
-    left: 50%; /* Center text horizontally */
-    transform: translate(-50%, -50%); /* Ensure perfect centering */
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
+  position: absolute;
+  top: 60%;
+  /* Center text vertically */
+  left: 50%;
+  /* Center text horizontally */
+  transform: translate(-50%, -50%);
+  /* Ensure perfect centering */
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
 }
 
 h2 {
-    color: white;
-    padding-top:0px ;
-    font-size: 2.5rem;
+  color: white;
+  padding-top: 0px;
+  font-size: 2.5rem;
 }
 
 
 
 
 h1 {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 
 
 
 /* General Styles */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 /* Navbar Styles */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: #205781;
-    color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: white;
+  color: black;
 }
 
 .logo {
-    font-size: 30px;
-    font-weight: bold;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Open Sans";
 }
 
 .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
 }
 
 .nav-links li {
-    display: inline;
+  display: inline;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    padding: 8px 12px;
-    transition: 0.3s ease-in-out;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  padding: 8px 12px;
+  transition: 0.3s ease-in-out;
+  font-family: "Open Sans";
 }
 
 
 
 .nav-links a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
 }
 
 .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .search-bar {
-    padding: 8px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
 }
 
-.login-btn, .signup-btn {
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    transition: 0.3s ease-in-out;
-    color: #ffffff;
-    text-decoration: none;
-    display: inline-block;
+.login-btn,
+.signup-btn {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: 0.3s ease-in-out;
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .login-btn {
-    background: #4f959d;
-    color: white;
-    color: #ffffff;
-    text-decoration: none;
-    display: inline-block;
+  background: #578FCA;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .signup-btn {
-    background: #98d2c0;
-    color: black;
-    color: #ffffff;
-    text-decoration: none;
-    display: inline-block;
+  background: #3674B5;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
 }
 
-.login-btn:hover, .signup-btn:hover {
-    transform: scale(1.1);
+.login-btn:hover,
+.signup-btn:hover {
+  transform: scale(1.1);
 }
 
 
 /* Typing Animation for Heading */
 .animated-text {
-    font-size: 2.5rem;
-    font-weight: bold;
-    border-right: 3px solid white;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0;
-    animation: typing 3s steps(30, end) forwards, blink 0.7s infinite;
+  font-size: 2.5rem;
+  font-weight: bold;
+  border-right: 3px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 3s steps(30, end) forwards, blink 0.7s infinite;
 }
 
 /* Typing Animation */
 @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
 }
 
 /* Cursor Blinking Effect */
 @keyframes blink {
-    50% { border-color: transparent; }
+  50% {
+    border-color: transparent;
+  }
 }
 
 /* Fade-in Effect for Paragraph */
 .animated-fade {
-    opacity: 0;
-    animation: fadeIn 2s ease-in-out forwards 1.5s;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards 1.5s;
 }
 
 /* Fade-in Keyframes */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .animated-text {
-        font-size: 2rem;
-    }
-    .carousel-caption p {
-        font-size: 1rem;
-    }
+  .animated-text {
+    font-size: 2rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1rem;
+  }
 }
 
 
-  
-  @keyframes fadeInUp {
-    from {
-      transform: translateY(40px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
   }
-  
-  @keyframes slideInDown {
-    from {
-      transform: translateY(-30px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
   }
-  
- 
-  
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+
 .news {
-    background: #205781;
-    color: white;
-  }
-  
-  .btn2 {
-    height: 45px;
-    width: 100px;
-    background: white;
-    margin-left: -10px;
-    border: 2px solid white;
-    font-weight: 600;
-  }
-  
-  .news input {
-    height: 45px;
-    width: 55%;
-    border: 2px solid white;
-    outline: none;
-    background: black;
-    color: white;
-    margin-top: 20px;
-    font-weight: 600;
-  }
-  
-  .news::placeholder {
-    color: white;
-  }
-  
-  .news p {
-    margin: 0;
-  }
-  
-  .fab {
-    font-size: 2.5rem;
-    cursor: pointer;
-    padding-right: 5px;
-  }
+  background: #205781;
+  color: white;
+}
 
-  .btn1 {
+.btn2 {
+  height: 45px;
+  width: 100px;
+  background: white;
+  margin-left: -10px;
+  border: 2px solid white;
+  font-weight: 600;
+}
 
-    height: 45px;
-    width: 35%;
-    border: none;
-    outline: none;
-    background-color: rgb(248, 26, 92);
-    color: white;
-    font-weight: 700;
-    border-radius: 60px;
-  
-  }
-  
-  .btn1:hover {
-    background-color: rgb(211, 21, 78);
-    transition: 0.5s;
-  
-  }
-  
-  h1 {
-    font-weight: 700;
-  
-  }
+.news input {
+  height: 45px;
+  width: 55%;
+  border: 2px solid white;
+  outline: none;
+  background: black;
+  color: white;
+  margin-top: 20px;
+  font-weight: 600;
+}
 
-  .why-choose-us {
-    background: #205781;
-    padding: 60px 20px;
-    text-align: center;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 40px;
-    color: #000;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-  }
-  
-  .info-card {
-    background: #ffffff;
-    padding: 30px 20px;
-    border-radius: 16px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .info-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-  }
-  
-  .info-card img {
-    width: 50px;
-    margin-bottom: 20px;
-  }
-  
-  .info-card h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-  }
-  
-  .info-card p {
-    font-size: 1rem;
-    color: #333;
-    line-height: 1.6;
-  }
-  
+.news::placeholder {
+  color: white;
+}
 
-  /* Dropdown styles */
+.news p {
+  margin: 0;
+}
+
+.fab {
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding-right: 5px;
+}
+
+.btn1 {
+
+  height: 45px;
+  width: 35%;
+  border: none;
+  outline: none;
+  background-color: rgb(248, 26, 92);
+  color: white;
+  font-weight: 700;
+  border-radius: 60px;
+
+}
+
+.btn1:hover {
+  background-color: rgb(211, 21, 78);
+  transition: 0.5s;
+
+}
+
+h1 {
+  font-weight: 700;
+
+}
+
+.why-choose-us {
+  background: white;
+  padding: 60px 20px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #000;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.info-card {
+  color: white;
+  background: #578FCA;
+  padding: 30px 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.info-card img {
+  width: 50px;
+  margin-bottom: 20px;
+}
+
+.info-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.info-card p {
+  font-size: 1rem;
+  color: white;
+  line-height: 1.6;
+}
+
+
+/* Dropdown styles */
 .dropdown {
   position: relative;
 }
@@ -457,7 +489,7 @@ body {
   left: 0;
   background-color: #ffffff;
   min-width: 180px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   border-radius: 8px;
   overflow: hidden;
@@ -482,15 +514,32 @@ body {
   display: block;
 }
 
+.container {
+  max-width: max-content;
+  font-family: "Manrope", sans-serif;
+  --tw-text-opacity: 1;
+  font-weight: 400;
+  color: rgb(78 84 95 / var(--tw-text-opacity));
+  font-size: 1.2rem;
+  line-height: 1.75rem;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 1.62rem;
+  font-weight: 700;
+  line-height: 2.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(24 26 30 / var(--tw-text-opacity));
+}
 
 
+h1 {
+  font-weight: bolder;
+  color: black;
+}
 
-
-
-
-
-
-
-
-
+p {
+  font-size: 1.10rem;
+}
 
