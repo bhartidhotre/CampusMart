@@ -37,7 +37,7 @@ if (submit) {
       .then((userCredential) => {
         localStorage.setItem("isLoggedIn", "true");
         alert("Logging in...");
-        window.location.href = "home.html";
+        window.location.href = "index.html";
       })
       .catch((error) => {
         alert(error.message);
